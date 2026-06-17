@@ -1,0 +1,91 @@
+version: 1
+
+project:
+  title: UKSA Software, Data and AI Training
+  description: Course materials for the UK Space Agency Software, Data and AI CPD programme.
+  github: reac2/UKSA_SoftwareDataAI_Training
+  jupyter: true
+  settings:
+    output_matplotlib_strings: remove
+  toc:
+    - file: index.md
+    - file: JUPYTERBOOK_MIGRATION_PLAN.md
+      hidden: true
+    - title: Resources
+      children:
+        - file: UKSA_SoftwareDataAI_Training/Resources/Navigating_the_notebooks.ipynb
+        - file: UKSA_SoftwareDataAI_Training/Phase2_Materials/testing_package_versions.ipynb
+    - title: Bridging Course
+      children:
+        - file: UKSA_SoftwareDataAI_Training/Bridging_Course/README.md
+        - file: UKSA_SoftwareDataAI_Training/Bridging_Course/Array_DF_practice_questions.ipynb
+        - file: UKSA_SoftwareDataAI_Training/Bridging_Course/Array_DF_practice_answers.ipynb
+        - file: UKSA_SoftwareDataAI_Training/Bridging_Course/geopandas_ex2.ipynb
+        - file: UKSA_SoftwareDataAI_Training/Bridging_Course/EarthEngineAPI.ipynb
+        - file: UKSA_SoftwareDataAI_Training/Bridging_Course/Anatomy_of_a_NN_BC.ipynb
+    - title: Programming Foundations
+      children:
+        - title: Python Introduction
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/Code_Introduction_Notebooks/Learning_basic_python_code/01_python_Introduction.ipynb
+        - title: NumPy and pandas
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/Code_Introduction_Notebooks/Learning_basic_python_code/02_data_manipulation_numpy_pandas.ipynb
+        - title: C - Dissecting the Language
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/Code_Introduction_Notebooks/Learning_basic_C_code/1. C - Dissecting the language - UKSA.ipynb
+        - title: C - Basic Datatypes
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/Code_Introduction_Notebooks/Learning_basic_C_code/2. C - Basic Datatypes - UKSA.ipynb
+        - title: C - Operators
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/Code_Introduction_Notebooks/Learning_basic_C_code/3. C - Operators - UKSA.ipynb
+        - title: C - Loops and Conditions
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/Code_Introduction_Notebooks/Learning_basic_C_code/4. C - Loops and conditions - UKSA.ipynb
+    - title: Cohort 1
+      children:
+        - title: Git and GitHub
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort1/Welcome_GitHub_WED_0900_1030/Git.ipynb
+        - title: Exploring the Data
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort1/AI101_WED_1330/Wed_1530_1700_1_Exploring_the_data.ipynb
+        - title: Anatomy of an AI Model
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort1/AI101_WED_1330/Wed_1530_1700_2_Anatomy_of_an_AI_model.ipynb
+        - title: Data Augmentation
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort1/AI101_WED_1330/Thurs_0900_1030_1_Data_augmentation.ipynb
+        - title: Traditional Clustering
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort1/AI101_WED_1330/Thurs_0900_1030_1_How_Clustering_Works_TraditionalML_only_approach.ipynb
+        - title: Neural Network Clustering
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort1/AI101_WED_1330/Thurs_0900_1030_2_How_Clustering_Works_NN_approach.ipynb
+        - title: TinyML with TensorFlow
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort1/AI101_WED_1330/Thurs_0900_1030_2_TinyML_with_TensorFlow.ipynb
+        - title: Deep Learning on Remote Sensing Data
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort1/AI101_WED_1330/Thurs_1100_1230_Deep_learning_on_remote_sensing_data.ipynb
+        - title: DSP Python Example 1
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort1/Digital_signal_processing_code_examples/python/ex01.ipynb
+        - title: DSP Python Example 2
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort1/Digital_signal_processing_code_examples/python/ex02.ipynb
+        - title: DSP Python Example 3
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort1/Digital_signal_processing_code_examples/python/ex03.ipynb
+        - title: Polyphase Decimation
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort1/Digital_signal_processing_code_examples/python/polyphasedecimatefinal.ipynb
+        - title: ARM FIR Example
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort1/Digital_signal_processing_code_examples/armc/NOT_FINDING_MATH_arm_fir_example_f32.ipynb
+        - title: Vector MAC
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort1/Digital_signal_processing_code_examples/armc/vectorMAC4.ipynb
+    - title: Cohort 2
+      children:
+        - file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort2/Navigating_the_notebooks.ipynb
+        - file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort2/geopandas_examples.ipynb
+        - file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort2/EarthEngineAPI.ipynb
+        - file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort2/Anatomy_of_a_NN.ipynb
+        - file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort2/A_marginally_more_complicated_NN.ipynb
+        - file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort2/Data_augmentation.ipynb
+        - title: Case Study Part 1 - OSM Label Data
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort2/CASESTUDY/CASESTUDY_PART1_OSM_label_data.ipynb
+        - title: Case Study Part 2 - Match and Prepare Data
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort2/CASESTUDY/CASESTUDY_PART2_match_and_prepare_data.ipynb
+        - title: Case Study Part 3 - Ingest and Fine-tune
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort2/CASESTUDY/CASESTUDY_PART3_ingest_and_finetune.ipynb
+
+site:
+  template: book-theme
+  actions:
+    - title: Open in JupyterHub
+      url: https://icg-cpd-cluster.port.ac.uk/jupyterhub/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Freac2%2FUKSA_SoftwareDataAI_Training&branch=main&urlpath=lab%2Ftree%2FUKSA_SoftwareDataAI_Training%3Fautodecode
+  options:
+    logo: docs/source/Logos_Banner.png
