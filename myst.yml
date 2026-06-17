@@ -13,16 +13,24 @@ project:
       hidden: true
     - title: Resources
       children:
-        - file: UKSA_SoftwareDataAI_Training/Resources/Navigating_the_notebooks.ipynb
-        - file: UKSA_SoftwareDataAI_Training/Phase2_Materials/testing_package_versions.ipynb
+        - title: Navigating the Notebooks
+          file: UKSA_SoftwareDataAI_Training/Resources/Navigating_the_notebooks.ipynb
+        - title: Testing Package Versions
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/testing_package_versions.ipynb
     - title: Bridging Course
       children:
-        - file: UKSA_SoftwareDataAI_Training/Bridging_Course/README.md
-        - file: UKSA_SoftwareDataAI_Training/Bridging_Course/Array_DF_practice_questions.ipynb
-        - file: UKSA_SoftwareDataAI_Training/Bridging_Course/Array_DF_practice_answers.ipynb
-        - file: UKSA_SoftwareDataAI_Training/Bridging_Course/geopandas_ex2.ipynb
-        - file: UKSA_SoftwareDataAI_Training/Bridging_Course/EarthEngineAPI.ipynb
-        - file: UKSA_SoftwareDataAI_Training/Bridging_Course/Anatomy_of_a_NN_BC.ipynb
+        - title: Bridging Course Overview
+          file: UKSA_SoftwareDataAI_Training/Bridging_Course/README.md
+        - title: Array and DataFrame Practice - Questions
+          file: UKSA_SoftwareDataAI_Training/Bridging_Course/Array_DF_practice_questions.ipynb
+        - title: Array and DataFrame Practice - Answers
+          file: UKSA_SoftwareDataAI_Training/Bridging_Course/Array_DF_practice_answers.ipynb
+        - title: Geopandas Practice
+          file: UKSA_SoftwareDataAI_Training/Bridging_Course/geopandas_ex2.ipynb
+        - title: Earth Engine API
+          file: UKSA_SoftwareDataAI_Training/Bridging_Course/EarthEngineAPI.ipynb
+        - title: AI, ML, and Neural Networks
+          file: UKSA_SoftwareDataAI_Training/Bridging_Course/Anatomy_of_a_NN_BC.ipynb
     - title: Programming Foundations
       children:
         - title: Python Introduction
@@ -69,12 +77,18 @@ project:
           file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort1/Digital_signal_processing_code_examples/armc/vectorMAC4.ipynb
     - title: Cohort 2
       children:
-        - file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort2/Navigating_the_notebooks.ipynb
-        - file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort2/geopandas_examples.ipynb
-        - file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort2/EarthEngineAPI.ipynb
-        - file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort2/Anatomy_of_a_NN.ipynb
-        - file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort2/A_marginally_more_complicated_NN.ipynb
-        - file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort2/Data_augmentation.ipynb
+        - title: Navigating the Notebooks
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort2/Navigating_the_notebooks.ipynb
+        - title: Geopandas Examples
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort2/geopandas_examples.ipynb
+        - title: Earth Engine API
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort2/EarthEngineAPI.ipynb
+        - title: Anatomy of a Neural Network
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort2/Anatomy_of_a_NN.ipynb
+        - title: A Marginally More Complicated Neural Network
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort2/A_marginally_more_complicated_NN.ipynb
+        - title: Data Augmentation
+          file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort2/Data_augmentation.ipynb
         - title: Case Study Part 1 - OSM Label Data
           file: UKSA_SoftwareDataAI_Training/Phase2_Materials/cohort2/CASESTUDY/CASESTUDY_PART1_OSM_label_data.ipynb
         - title: Case Study Part 2 - Match and Prepare Data

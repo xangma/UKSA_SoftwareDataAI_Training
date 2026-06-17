@@ -77,7 +77,7 @@ Useful references:
 - [x] Add a clear `index.md` landing page.
 - [x] Organize the book around the learner journey: resources, bridging course, programming foundations, and cohort-specific materials.
 - [x] Keep notebook files in their current locations initially to avoid breaking relative paths and launch links.
-- [ ] Add or normalize notebook titles/frontmatter where needed.
+- [x] Add or normalize notebook titles/frontmatter where needed.
 
 ### 4. Content Fixes
 
@@ -85,7 +85,7 @@ Useful references:
 - [x] Validate kernelspecs against cluster-supported names: `python3`, `ml-env`, and `c`.
 - [x] Confirm unsupported kernels only appeared in generated/noise files, not in the real tracked notebooks.
 - [x] Add a CI guard so future notebooks fail if they use unsupported kernels.
-- [ ] Audit hard-coded paths so notebooks intentionally use repo-relative paths, `/home/jovyan/data`, or `/home/jovyan/shared`.
+- [x] Audit hard-coded paths so notebooks intentionally use repo-relative paths, `/home/jovyan/data`, or `/home/jovyan/shared`.
 - [x] Clean notebook warning sources: duplicate cell/output identifiers, missing heading-depth structure, and the oversized GIF warning.
 
 ### 5. Static Build and CI
@@ -97,6 +97,7 @@ Useful references:
 - [x] Add CI for tracked generated-file checks.
 - [x] Add CI for notebook kernelspec checks.
 - [x] Add CI for duplicate generated notebook metadata identifiers.
+- [x] Add CI for unsupported hard-coded path and Colab storage checks.
 
 ### 6. JupyterHub Integration
 
@@ -139,3 +140,6 @@ Useful references:
 - Normalized notebook heading levels that were skipping heading depth.
 - Optimized the oversized duplicate-frame GIF while preserving its visible frame sequence and timing.
 - Confirmed the CPD nbgitpuller launch URL reaches the JupyterHub login flow with the expected target; a logged-in pull test is still outstanding.
+- Replaced stale Colab, Google Drive, and personal filesystem paths with repo-relative output paths and CPD shared data paths.
+- Added a hard-coded path guard for unsupported local paths, Google Drive storage, and `chdir` usage.
+- Added explicit TOC titles for pages whose notebook headings were missing, too generic, or not suitable for book navigation.
