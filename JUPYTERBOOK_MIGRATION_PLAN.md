@@ -86,7 +86,7 @@ Useful references:
 - [x] Confirm unsupported kernels only appeared in generated/noise files, not in the real tracked notebooks.
 - [x] Add a CI guard so future notebooks fail if they use unsupported kernels.
 - [ ] Audit hard-coded paths so notebooks intentionally use repo-relative paths, `/home/jovyan/data`, or `/home/jovyan/shared`.
-- [ ] Clean notebook warning sources: duplicate cell/output identifiers, missing heading-depth structure, and the oversized GIF warning.
+- [x] Clean notebook warning sources: duplicate cell/output identifiers, missing heading-depth structure, and the oversized GIF warning.
 
 ### 5. Static Build and CI
 
@@ -96,6 +96,7 @@ Useful references:
 - [x] Add CI for missing local asset checks.
 - [x] Add CI for tracked generated-file checks.
 - [x] Add CI for notebook kernelspec checks.
+- [x] Add CI for duplicate generated notebook metadata identifiers.
 
 ### 6. JupyterHub Integration
 
@@ -104,6 +105,7 @@ Useful references:
 - [x] Prefer JupyterLab as the opened interface.
 - [x] Enable `project.jupyter: true` as a secondary convenience, not the primary course launch mechanism.
 - [x] Verify the rendered site exposes the expected CPD JupyterHub launch links.
+- [x] Confirm the unauthenticated CPD launch route reaches JupyterHub login with the expected nbgitpuller target.
 - [ ] Add page-specific launch links for key notebooks if instructors want one-click notebook-level entry points beyond the course-level launch.
 - [ ] Test an authenticated launch against `https://icg-cpd-cluster.port.ac.uk/jupyterhub/`.
 
@@ -133,3 +135,7 @@ Useful references:
 - Restored the missing local image assets referenced by notebooks.
 - Removed tracked `.DS_Store`, `.ipynb_checkpoints`, and `docs/build` artifacts.
 - Reviewed checkpoint-only source deltas and confirmed there is no course content that needs to be rescued before deleting checkpoints.
+- Removed duplicated generated notebook metadata IDs that caused MyST duplicate identifier warnings.
+- Normalized notebook heading levels that were skipping heading depth.
+- Optimized the oversized duplicate-frame GIF while preserving its visible frame sequence and timing.
+- Confirmed the CPD nbgitpuller launch URL reaches the JupyterHub login flow with the expected target; a logged-in pull test is still outstanding.
