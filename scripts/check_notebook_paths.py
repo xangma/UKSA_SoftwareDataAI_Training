@@ -34,7 +34,7 @@ def tracked_sources() -> list[Path]:
     for line in output.splitlines():
         if any(part in line for part in EXCLUDED_PARTS):
             continue
-        if line == "package-lock.json":
+        if line in {"package-lock.json", "JUPYTERBOOK_MIGRATION_PLAN.md"}:
             continue
         if line.endswith((".ipynb", ".md")):
             paths.append(Path(line))

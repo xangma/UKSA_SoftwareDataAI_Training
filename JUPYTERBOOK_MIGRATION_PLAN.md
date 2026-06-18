@@ -143,3 +143,4 @@ Useful references:
 - Replaced stale Colab, Google Drive, and personal filesystem paths with repo-relative output paths and CPD shared data paths.
 - Added a hard-coded path guard for unsupported local paths, Google Drive storage, and `chdir` usage.
 - Added explicit TOC titles for pages whose notebook headings were missing, too generic, or not suitable for book navigation.
+- Reworked the book navigation around the learner journey rather than delivery cohorts; cohort-specific copies are retained only as historical variants.
