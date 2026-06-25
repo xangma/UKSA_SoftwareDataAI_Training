@@ -166,7 +166,7 @@ jobs:
         run: |
           set -euo pipefail
 
-          perl -0pi -e 's|image:\s+\Q$ENV{IMAGE_REPOSITORY}\E(?::[A-Za-z0-9_.-]+|@sha256:[a-f0-9]+)|image: $ENV{IMAGE_REF}|g' "$GITOPS_FILE"
+          perl -0pi -e 's#image:\s+\Q$ENV{IMAGE_REPOSITORY}\E(?::[A-Za-z0-9_.-]+|@sha256:[a-f0-9]+)#image: $ENV{IMAGE_REF}#g' "$GITOPS_FILE"
 
           grep -q "$IMAGE_REF" "$GITOPS_FILE"
           grep -n "image:" "$GITOPS_FILE"
