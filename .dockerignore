@@ -1,0 +1,17 @@
+.git
+.gitignore
+node_modules
+.myst
+_build
+docs/build
+.ipynb_checkpoints
+**/.ipynb_checkpoints
+.DS_Store
+**/.DS_Store
+__pycache__
+*.pyc
+*.pyo
+execute
+**/execute
+.github
+scripts

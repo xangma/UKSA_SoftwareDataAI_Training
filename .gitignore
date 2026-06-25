@@ -1,0 +1,21 @@
+# macOS metadata
+.DS_Store
+**/.DS_Store
+
+# Jupyter generated state
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+# Documentation build outputs
+_build/
+docs/build/
+.myst/
+node_modules/
+
+# Notebook execution caches
+execute/
+**/execute/
+
+# Python caches
+__pycache__/
+*.py[cod]
