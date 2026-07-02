@@ -10,7 +10,7 @@ from urllib.parse import urlencode, urlparse
 
 DEFAULT_BRANCH = "main"
 DEFAULT_HUB_URL = "https://icg-cpd-cluster.port.ac.uk/jupyterhub"
-DEFAULT_REPO_URL = "https://github.com/reac2/UKSA_SoftwareDataAI_Training"
+DEFAULT_REPO_URL = "https://github.com/xangma/UKSA_SoftwareDataAI_Training"
 
 
 def repo_directory(repo_url: str) -> str:

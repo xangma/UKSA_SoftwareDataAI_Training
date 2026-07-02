@@ -20,4 +20,4 @@ The book is built as static HTML with notebook execution disabled. Notebook outp
 
 The migration plan is tracked in [JUPYTERBOOK_MIGRATION_PLAN.md](JUPYTERBOOK_MIGRATION_PLAN.md).
 
-[cpd-launch]: https://icg-cpd-cluster.port.ac.uk/jupyterhub/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Freac2%2FUKSA_SoftwareDataAI_Training&branch=main&urlpath=lab%2Ftree%2FUKSA_SoftwareDataAI_Training%3Fautodecode
+[cpd-launch]: https://icg-cpd-cluster.port.ac.uk/jupyterhub/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fxangma%2FUKSA_SoftwareDataAI_Training&branch=main&urlpath=lab%2Ftree%2FUKSA_SoftwareDataAI_Training%3Fautodecode

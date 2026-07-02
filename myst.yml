@@ -3,7 +3,7 @@ version: 1
 project:
   title: UKSA Software, Data and AI Training
   description: Course materials for the UK Space Agency Software, Data and AI CPD programme.
-  github: reac2/UKSA_SoftwareDataAI_Training
+  github: xangma/UKSA_SoftwareDataAI_Training
   jupyter: true
   settings:
     output_matplotlib_strings: remove
@@ -106,7 +106,7 @@ site:
   template: book-theme
   actions:
     - title: Open in JupyterHub
-      url: https://icg-cpd-cluster.port.ac.uk/jupyterhub/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Freac2%2FUKSA_SoftwareDataAI_Training&branch=main&urlpath=lab%2Ftree%2FUKSA_SoftwareDataAI_Training%3Fautodecode
+      url: https://icg-cpd-cluster.port.ac.uk/jupyterhub/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fxangma%2FUKSA_SoftwareDataAI_Training&branch=main&urlpath=lab%2Ftree%2FUKSA_SoftwareDataAI_Training%3Fautodecode
   options:
     logo: docs/source/Logos_Banner.png
     favicon: favicon.svg
