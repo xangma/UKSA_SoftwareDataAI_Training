@@ -17,6 +17,7 @@ REPO_URL = "https://github.com/xangma/UKSA_SoftwareDataAI_Training"
 REPO_DIR = "UKSA_SoftwareDataAI_Training"
 BRANCH = "main"
 ROOT_PATH = "/jupyterbook"
+THEBE_BOOTSTRAP_URL = f"{HUB_URL}/services/uksa-thebe/bootstrap"
 MARKER_START = "<!-- cpd-jupyterhub-launch-links:start -->"
 MARKER_END = "<!-- cpd-jupyterhub-launch-links:end -->"
 
@@ -81,11 +82,13 @@ def injected_script(routes: dict[str, str]) -> str:
     routes_json = json.dumps(routes, sort_keys=True, separators=(",", ":"))
     default_url = json.dumps(launch_url())
     root_path = json.dumps(ROOT_PATH.rstrip("/"))
+    thebe_bootstrap_url = json.dumps(THEBE_BOOTSTRAP_URL)
     return f"""{MARKER_START}
 <script id="cpd-jupyterhub-launch-links">
 (() => {{
   const rootPath = {root_path};
   const defaultUrl = {default_url};
+  const thebeBootstrapUrl = {thebe_bootstrap_url};
   const notebookUrls = {routes_json};
 
   function currentSlug() {{
@@ -95,8 +98,60 @@ def injected_script(routes: dict[str, str]) -> str:
     return decodeURIComponent(path.replace(/^\\/+/, "").replace(/\\/$/, ""));
   }}
 
+  function currentNotebookUrl() {{
+    return notebookUrls[currentSlug()] || "";
+  }}
+
+  function authReturnUrl() {{
+    const url = new URL(window.location.href);
+    url.searchParams.set("thebe", "1");
+    return url.toString();
+  }}
+
+  function bootstrapUrl() {{
+    const url = new URL(thebeBootstrapUrl);
+    url.searchParams.set("return", authReturnUrl());
+    return url.toString();
+  }}
+
+  function findLaunchLink() {{
+    for (const link of document.querySelectorAll("a")) {{
+      if (link.textContent.trim() !== "Open in JupyterHub") continue;
+      if (link.href.includes("/hub/user-redirect/git-pull")) return link;
+    }}
+    return null;
+  }}
+
+  function removeLiveCodeLink() {{
+    document.querySelectorAll("[data-cpd-thebe-bootstrap]").forEach((node) => node.remove());
+  }}
+
+  function updateLiveCodeLink() {{
+    const notebookUrl = currentNotebookUrl();
+    if (!notebookUrl) {{
+      removeLiveCodeLink();
+      return;
+    }}
+
+    const launchLink = findLaunchLink();
+    if (!launchLink) return;
+
+    let link = launchLink.parentElement?.querySelector("[data-cpd-thebe-bootstrap]");
+    if (!link) {{
+      link = launchLink.cloneNode(false);
+      link.dataset.cpdThebeBootstrap = "true";
+      link.textContent = "Connect JupyterHub";
+      launchLink.insertAdjacentElement("afterend", link);
+    }}
+    link.setAttribute("href", bootstrapUrl());
+    link.removeAttribute("target");
+    link.removeAttribute("rel");
+    link.title = "Authenticate with CPD JupyterHub for in-page code execution";
+    link.setAttribute("aria-label", "Connect CPD JupyterHub for live code");
+  }}
+
   function updateLaunchLinks() {{
-    const href = notebookUrls[currentSlug()] || defaultUrl;
+    const href = currentNotebookUrl() || defaultUrl;
     for (const link of document.querySelectorAll("a")) {{
       if (link.textContent.trim() !== "Open in JupyterHub") continue;
       if (!link.href.includes("/hub/user-redirect/git-pull")) continue;
@@ -105,6 +160,7 @@ def injected_script(routes: dict[str, str]) -> str:
         ? "Open this notebook in CPD JupyterHub"
         : "Open the course in CPD JupyterHub";
     }}
+    updateLiveCodeLink();
   }}
 
   let pending = false;

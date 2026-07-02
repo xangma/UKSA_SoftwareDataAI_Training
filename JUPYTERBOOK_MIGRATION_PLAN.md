@@ -44,7 +44,7 @@ Use the modern Jupyter Book 2 / MyST workflow:
 - Keep `_build/` out of git.
 - Notebook execution is disabled by default and should only be enabled explicitly with `--execute`.
 - Build-time execution requires Jupyter Server and matching kernels.
-- MyST's built-in Jupyter power button is disabled because it launches Binder by default and tries to build this repo's static-site Dockerfile. For this course, explicit JupyterHub/nbgitpuller links are the reliable launch path.
+- MyST in-page execution should use the CPD JupyterHub service bridge, not Binder. Explicit JupyterHub/nbgitpuller links remain the reliable full-notebook launch path.
 
 Useful references:
 
@@ -104,11 +104,11 @@ Useful references:
 - [x] Add an explicit course-level launch link using CPD JupyterHub and nbgitpuller.
 - [x] Generate launch URLs from a script so repo paths, branch names, and URL encoding stay correct.
 - [x] Prefer JupyterLab as the opened interface.
-- [x] Keep MyST's Binder-backed Jupyter power button disabled; use explicit CPD JupyterHub nbgitpuller links instead.
+- [x] Add page-specific CPD JupyterHub launch links for notebook-backed pages.
+- [x] Configure MyST in-page execution to target the CPD JupyterHub service bridge instead of Binder.
 - [x] Verify the rendered site exposes the expected CPD JupyterHub launch links.
 - [x] Confirm the unauthenticated CPD launch route reaches JupyterHub login with the expected nbgitpuller target.
-- [ ] Add page-specific launch links for key notebooks if instructors want one-click notebook-level entry points beyond the course-level launch.
-- [ ] Test an authenticated launch against `https://icg-cpd-cluster.port.ac.uk/jupyterhub/`.
+- [ ] Test an authenticated launch and in-page execution against `https://icg-cpd-cluster.port.ac.uk/jupyterhub/`.
 
 ### 7. Later: Controlled Execution
 
@@ -123,13 +123,15 @@ Useful references:
 3. [x] Missing assets and kernelspec validation.
 4. [x] Static build CI.
 5. [x] Course-level JupyterHub launch link.
-6. [ ] Remaining content polish and optional notebook-level launch links.
+6. [x] Notebook-level JupyterHub launch links.
+7. [ ] Remaining content polish and authenticated in-page execution smoke test.
 
 ## Progress in `codex/jupyterbook-migration`
 
 - Added MyST/Jupyter Book 2 scaffold at the repo root.
 - Added a curated static-book TOC covering resources, bridging content, programming foundations, and cohort material.
 - Added a course landing page with a CPD JupyterHub nbgitpuller launch link.
+- Added page-specific CPD JupyterHub launch links and a CPD JupyterHub service target for MyST in-page execution.
 - Replaced the old Sphinx ReadTheDocs build with a MyST static HTML build.
 - Added GitHub Actions docs build checks.
 - Added repository hygiene, missing local image, and CPD-supported kernelspec checks.

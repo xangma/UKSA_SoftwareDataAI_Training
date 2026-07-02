@@ -4,6 +4,12 @@ project:
   title: UKSA Software, Data and AI Training
   description: Course materials for the UK Space Agency Software, Data and AI CPD programme.
   github: xangma/UKSA_SoftwareDataAI_Training
+  jupyter:
+    server:
+      url: https://icg-cpd-cluster.port.ac.uk/jupyterhub/services/uksa-thebe/server/
+      token: cpd-hub-oauth
+    kernelName: python3
+    disableSessionSaving: true
   settings:
     output_matplotlib_strings: remove
   toc:
