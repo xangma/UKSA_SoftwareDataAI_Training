@@ -14,4 +14,5 @@ __pycache__
 execute
 **/execute
 .github
-scripts
+scripts/*
+!scripts/inject_jupyterhub_launch_links.py

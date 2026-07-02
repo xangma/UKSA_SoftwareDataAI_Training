@@ -166,7 +166,25 @@ jobs:
         run: |
           set -euo pipefail
 
-          perl -0pi -e 's#image:\s+\Q$ENV{IMAGE_REPOSITORY}\E(?::[A-Za-z0-9_.-]+|@sha256:[a-f0-9]+)#image: $ENV{IMAGE_REF}#g' "$GITOPS_FILE"
+          python - <<'PY'
+          import os
+          import re
+          from pathlib import Path
+
+          image_ref = os.environ["IMAGE_REF"]
+          image_repository = os.environ["IMAGE_REPOSITORY"]
+          path = Path(os.environ["GITOPS_FILE"])
+          text = path.read_text()
+          pattern = re.compile(
+              rf"^(\s*image:\s*){re.escape(image_repository)}"
+              r"(?::[A-Za-z0-9_.-]+|@sha256:[A-Fa-f0-9]{64})(\s*)$",
+              re.MULTILINE,
+          )
+          updated, count = pattern.subn(rf"\g<1>{image_ref}\2", text)
+          if count != 1:
+              raise SystemExit(f"Expected to update 1 image line in {path}, updated {count}")
+          path.write_text(updated)
+          PY
 
           grep -q "$IMAGE_REF" "$GITOPS_FILE"
           grep -n "image:" "$GITOPS_FILE"

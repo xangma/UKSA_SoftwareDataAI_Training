@@ -3,6 +3,7 @@ FROM node:22-alpine AS builder
 WORKDIR /build
 
 COPY package.json package-lock.json ./
+RUN apk add --no-cache python3
 RUN npm ci
 
 COPY . .
