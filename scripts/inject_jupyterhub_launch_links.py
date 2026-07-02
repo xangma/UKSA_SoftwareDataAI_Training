@@ -37,6 +37,30 @@ def launch_url(source_path: str | None = None) -> str:
     return f"{HUB_URL.rstrip('/')}/hub/user-redirect/git-pull?{query}"
 
 
+def page_path(build_dir: Path, html_path: Path) -> str:
+    relative = html_path.relative_to(build_dir)
+    root = ROOT_PATH.rstrip("/")
+    if relative.name == "index.html":
+        suffix = "/".join(relative.parent.parts)
+        return f"{root}/{suffix}/" if suffix else f"{root}/"
+    suffix = "/".join(relative.with_suffix("").parts)
+    return f"{root}/{suffix}"
+
+
+def bootstrap_url(return_path: str) -> str:
+    query = urlencode({"return": return_path}, quote_via=quote)
+    return f"{THEBE_BOOTSTRAP_PATH}?{query}"
+
+
+def rewrite_static_connect_urls(html: str, return_path: str) -> str:
+    target = bootstrap_url(return_path)
+    return re.sub(
+        rf"{re.escape(THEBE_BOOTSTRAP_PATH)}(?:\?return=[^\"'<\s]*)?",
+        target,
+        html,
+    )
+
+
 def extract_project(html_text: str) -> dict:
     marker = '"project":'
     start = html_text.find(marker)
@@ -183,7 +207,7 @@ def injected_script(routes: dict[str, str]) -> str:
 {MARKER_END}"""
 
 
-def inject(html_path: Path, script: str) -> bool:
+def inject(build_dir: Path, html_path: Path, script: str) -> bool:
     original = html_path.read_text(encoding="utf-8")
     html = re.sub(
         rf"{re.escape(MARKER_START)}.*?{re.escape(MARKER_END)}\n?",
@@ -191,6 +215,7 @@ def inject(html_path: Path, script: str) -> bool:
         original,
         flags=re.DOTALL,
     )
+    html = rewrite_static_connect_urls(html, page_path(build_dir, html_path))
     if "</body>" not in html:
         raise ValueError(f"{html_path} does not contain </body>")
     updated = html.replace("</body>", f"{script}\n</body>", 1)
@@ -212,7 +237,7 @@ def main() -> int:
 
     changed = 0
     for html_path in args.build_dir.rglob("*.html"):
-        changed += int(inject(html_path, script))
+        changed += int(inject(args.build_dir, html_path, script))
     print(f"Injected {len(routes)} CPD notebook launch routes into {changed} HTML file(s).")
     return 0
 
