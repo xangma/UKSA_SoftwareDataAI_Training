@@ -128,7 +128,7 @@ def injected_script(routes: dict[str, str]) -> str:
 
   function bootstrapUrl() {{
     const url = new URL(thebeBootstrapPath, window.location.origin);
-    url.searchParams.set("return", window.location.href);
+    url.searchParams.set("return", window.location.pathname + window.location.search + window.location.hash);
     return url.pathname + url.search;
   }}
 
