@@ -17,6 +17,7 @@ REPO_URL = "https://github.com/xangma/UKSA_SoftwareDataAI_Training"
 REPO_DIR = "UKSA_SoftwareDataAI_Training"
 BRANCH = "main"
 ROOT_PATH = "/jupyterbook"
+THEBE_BOOTSTRAP_PATH = "/jupyterhub/services/uksa-thebe/bootstrap"
 MARKER_START = "<!-- cpd-jupyterhub-launch-links:start -->"
 MARKER_END = "<!-- cpd-jupyterhub-launch-links:end -->"
 
@@ -81,11 +82,13 @@ def injected_script(routes: dict[str, str]) -> str:
     routes_json = json.dumps(routes, sort_keys=True, separators=(",", ":"))
     default_url = json.dumps(launch_url())
     root_path = json.dumps(ROOT_PATH.rstrip("/"))
+    thebe_bootstrap_path = json.dumps(THEBE_BOOTSTRAP_PATH)
     return f"""{MARKER_START}
 <script id="cpd-jupyterhub-launch-links">
 (() => {{
   const rootPath = {root_path};
   const defaultUrl = {default_url};
+  const thebeBootstrapPath = {thebe_bootstrap_path};
   const notebookUrls = {routes_json};
 
   function currentSlug() {{
@@ -99,6 +102,24 @@ def injected_script(routes: dict[str, str]) -> str:
     return notebookUrls[currentSlug()] || "";
   }}
 
+  function bootstrapUrl() {{
+    const url = new URL(thebeBootstrapPath, window.location.origin);
+    url.searchParams.set("return", window.location.href);
+    return url.pathname + url.search;
+  }}
+
+  function updateConnectLinks() {{
+    const href = bootstrapUrl();
+    for (const link of document.querySelectorAll("a")) {{
+      if (link.textContent.trim() !== "Connect JupyterHub") continue;
+      if (!link.href.includes("/services/uksa-thebe/bootstrap")) continue;
+      if (link.getAttribute("href") !== href) link.setAttribute("href", href);
+      link.removeAttribute("target");
+      link.removeAttribute("rel");
+      link.title = "Authenticate with CPD JupyterHub for in-page code execution";
+    }}
+  }}
+
   function updateLaunchLinks() {{
     const href = currentNotebookUrl() || defaultUrl;
     for (const link of document.querySelectorAll("a")) {{
@@ -109,6 +130,7 @@ def injected_script(routes: dict[str, str]) -> str:
         ? "Open this notebook in CPD JupyterHub"
         : "Open the course in CPD JupyterHub";
     }}
+    updateConnectLinks();
   }}
 
   let pending = false;
