@@ -4,7 +4,6 @@ project:
   title: UKSA Software, Data and AI Training
   description: Course materials for the UK Space Agency Software, Data and AI CPD programme.
   github: xangma/UKSA_SoftwareDataAI_Training
-  jupyter: true
   settings:
     output_matplotlib_strings: remove
   toc:

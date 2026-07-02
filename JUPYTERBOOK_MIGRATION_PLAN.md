@@ -44,7 +44,7 @@ Use the modern Jupyter Book 2 / MyST workflow:
 - Keep `_build/` out of git.
 - Notebook execution is disabled by default and should only be enabled explicitly with `--execute`.
 - Build-time execution requires Jupyter Server and matching kernels.
-- MyST launch buttons exist via `project.jupyter: true`, but the UX is still experimental. For this course, explicit JupyterHub/nbgitpuller links should be treated as the reliable launch path.
+- MyST's built-in Jupyter power button is disabled because it launches Binder by default and tries to build this repo's static-site Dockerfile. For this course, explicit JupyterHub/nbgitpuller links are the reliable launch path.
 
 Useful references:
 
@@ -104,7 +104,7 @@ Useful references:
 - [x] Add an explicit course-level launch link using CPD JupyterHub and nbgitpuller.
 - [x] Generate launch URLs from a script so repo paths, branch names, and URL encoding stay correct.
 - [x] Prefer JupyterLab as the opened interface.
-- [x] Enable `project.jupyter: true` as a secondary convenience, not the primary course launch mechanism.
+- [x] Keep MyST's Binder-backed Jupyter power button disabled; use explicit CPD JupyterHub nbgitpuller links instead.
 - [x] Verify the rendered site exposes the expected CPD JupyterHub launch links.
 - [x] Confirm the unauthenticated CPD launch route reaches JupyterHub login with the expected nbgitpuller target.
 - [ ] Add page-specific launch links for key notebooks if instructors want one-click notebook-level entry points beyond the course-level launch.
