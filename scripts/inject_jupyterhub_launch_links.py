@@ -114,6 +114,10 @@ def injected_script(routes: dict[str, str]) -> str:
     return url.toString();
   }}
 
+  function hubReady() {{
+    return new URLSearchParams(window.location.search).get("thebe") === "1";
+  }}
+
   function findLaunchLink() {{
     for (const link of document.querySelectorAll("a")) {{
       if (link.textContent.trim() !== "Open in JupyterHub") continue;
@@ -140,13 +144,15 @@ def injected_script(routes: dict[str, str]) -> str:
     if (!link) {{
       link = launchLink.cloneNode(false);
       link.dataset.cpdThebeBootstrap = "true";
-      link.textContent = "Connect JupyterHub";
       launchLink.insertAdjacentElement("afterend", link);
     }}
+    link.textContent = hubReady() ? "JupyterHub Ready" : "Connect JupyterHub";
     link.setAttribute("href", bootstrapUrl());
     link.removeAttribute("target");
     link.removeAttribute("rel");
-    link.title = "Authenticate with CPD JupyterHub for in-page code execution";
+    link.title = hubReady()
+      ? "CPD JupyterHub is ready for in-page code execution"
+      : "Authenticate with CPD JupyterHub for in-page code execution";
     link.setAttribute("aria-label", "Connect CPD JupyterHub for live code");
   }}
 
@@ -164,7 +170,10 @@ def injected_script(routes: dict[str, str]) -> str:
   }}
 
   let pending = false;
+  let started = false;
+  let observer = null;
   function scheduleUpdate() {{
+    if (!started) return;
     if (pending) return;
     pending = true;
     requestAnimationFrame(() => {{
@@ -183,12 +192,28 @@ def injected_script(routes: dict[str, str]) -> str:
   }}
 
   window.addEventListener("popstate", scheduleUpdate);
-  document.addEventListener("DOMContentLoaded", updateLaunchLinks);
-  new MutationObserver(scheduleUpdate).observe(document.documentElement, {{
-    childList: true,
-    subtree: true,
-  }});
-  updateLaunchLinks();
+
+  function startUpdates() {{
+    if (started) return;
+    started = true;
+    observer = new MutationObserver(scheduleUpdate);
+    observer.observe(document.documentElement, {{
+      childList: true,
+      subtree: true,
+    }});
+    updateLaunchLinks();
+  }}
+
+  function startAfterHydration() {{
+    const idle = window.requestIdleCallback || ((callback) => setTimeout(callback, 0));
+    idle(() => setTimeout(startUpdates, 750));
+  }}
+
+  if (document.readyState === "complete") {{
+    startAfterHydration();
+  }} else {{
+    window.addEventListener("load", startAfterHydration, {{ once: true }});
+  }}
 }})();
 </script>
 {MARKER_END}"""
